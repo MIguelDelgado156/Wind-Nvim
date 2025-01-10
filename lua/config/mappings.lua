@@ -12,4 +12,11 @@ vim.keymap.set('n', '<Leader>d', '<Cmd>w<CR>', {silent = true})
 vim.keymap.set('n', '<Leader>s', '<Cmd>q<CR>', {silent = true})
 
 vim.keymap.set('n', '<Leader>vsp', '<Cmd>vsplit<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>gg', '<Cmd>NvimTreeOpen<CR>', {silent = true})
+vim.keymap.set('n', '<Leader>gg', '<Cmd>NvimTreeToggle<CR>', {silent = true})
+
+vim.keymap.set('n', '<Leader>gs', '<Cmd>Git<CR>', {silent = true})
+
+vim.keymap.set('n', '<Leader>h', '<C-w>h', {silent = true})
+vim.keymap.set('n', '<Leader>j', '<C-w>j', {silent = true})
+vim.keymap.set('n', '<Leader>k', '<C-w>k', {silent = true})
+vim.keymap.set('n', '<Leader>l', '<C-w>l', {silent = true})
