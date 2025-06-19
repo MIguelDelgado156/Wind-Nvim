@@ -1,57 +1,31 @@
--- Set Leader to Space
-local map = vim.api.nvim_set_keymap
-local silent = { silent = true, noremap = true }
-map("", "<Space>", "<Nop>", silent)
+map = vim.api.nvim_set_keymap
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
-function getOS()
-  local osname
-  -- Unix, Linux variants
-  local fh, err = assert(io.popen("uname -o 2>/dev/null", "r"))
-  if fh then
-    osname = fh:read()
-  end
-  return osname or "Windows"
-end
+-- Refresh source
+map('n', '<leader>rf<Enter>', ':source %<CR>', {noremap = true, silent = true})
 
--- Normal Mode
-vim.keymap.set('n', '<Leader>vsp', '<Cmd>vsplit<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>ps', '<Cmd>split<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>gs', '<Cmd>Git<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>h', '<C-w>h', {silent = true})
-vim.keymap.set('n', '<Leader>j', '<C-w>j', {silent = true})
-vim.keymap.set('n', '<Leader>k', '<C-w>k', {silent = true})
-vim.keymap.set('n', '<Leader>l', '<C-w>l', {silent = true})
-vim.keymap.set('n', '<S-h>', '<Cmd>vert res +5<CR>', {silent = true})
-vim.keymap.set('n', '<S-j>', '<Cmd>res +5<CR>', {silent = true})
-vim.keymap.set('n', '<S-k>', '<Cmd>res -5<CR>', {silent = true})
-vim.keymap.set('n', '<S-l>', '<Cmd>vert res -5<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>t', '<Cmd>term<CR>', {silent = true})
-vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', {silent = true})
-vim.keymap.set('n', '<Leader>nt', '<Cmd>tabnew<CR>', {silent = true})
-vim.keymap.set('n', '<C-k>', '<Cmd>lua vim.lsp.buf.hover()<CR>', {})
-vim.keymap.set('n', '<Leader>e', '<Cmd>q<CR>', {silent = true})
+-- Save
+map('n', '<leader>w<Enter>', ':w<CR>', { noremap = true, silent = true })
 
--- Terminal Mode
-vim.keymap.set('t', '<Esc>', '<C-\\><C-N>', {silent = true})
+-- Window Movement
+map('n', '<leader>l', '<C-w>l', { noremap = true, silent = true })
+map('n', '<leader>h', '<C-w>h', { noremap = true, silent = true })
+map('n', '<leader>vs<Enter>', ':vs<CR>', { noremap = true, silent = true })
 
--- Visual Mode
-vim.keymap.set('v', '>', '>gv', {silent = true})
-vim.keymap.set('v', '<', '<gv', {silent = true})
+-- Terminal 
+map('n', '<leader>t', ':terminal<CR>', { noremap = true, silent = true })
+map('t', '<leader><ESC>', [[<C-\><C-n>]], { noremap = true, silent = true })
 
--- Insert Mode
-vim.keymap.set('i', 'jk', '<Esc>', {})
-vim.keymap.set('i', 'kj', '<Esc>', {})
+-- Quitting
+map('n', '<leader>q', ':q<CR>', { noremap = true, silent = true})
 
+-- Neotree
+map('n', '<leader>ft', ':Neotree filesystem reveal left<CR>', { noremap = true, silent = true})
 
--- OS Specific mappings
-if getOS() == "OSX" or getOS() == "Darwin" then
-  vim.keymap.set('n', '<Leader>w', '<Cmd>w<CR>', {silent = true})
-  vim.keymap.set('n', '<Leader>q', '<Cmd>bd<CR>', {silent = true})
-  vim.keymap.set('n', '<Leader>nn', '<Cmd>NvimTreeToggle<CR>', {silent = true})
-else
-  vim.keymap.set('n', '<Leader>d', '<Cmd>w<CR>', {silent = true})
-  vim.keymap.set('n', '<Leader>s', '<Cmd>bd<CR>', {silent = true})
-  vim.keymap.set('n', '<Leader>gg', '<Cmd>NvimTreeToggle<CR>', {silent = true})
-end
+-- Telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
