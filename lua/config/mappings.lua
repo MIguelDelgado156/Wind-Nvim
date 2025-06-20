@@ -34,3 +34,8 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
+-- Neo Spotify Default mappings
+vim.keymap.set('n', '<space>sl', require("spot.display").display_playlist)
+vim.keymap.set('n', '<space>sps', require("spot.commands").play)
+vim.keymap.set('n', '<space>spp', require("spot.commands").pause)
+vim.keymap.set('n', '<space>spn', require("spot.commands").next)
