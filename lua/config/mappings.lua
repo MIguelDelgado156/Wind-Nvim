@@ -22,6 +22,11 @@ map('n', '<leader>q', ':q<CR>', { noremap = true, silent = true})
 -- Neotree
 map('n', '<leader>ft', ':Neotree filesystem reveal left<CR>', { noremap = true, silent = true})
 
+--  Git
+map('n', '<leader>gs<Enter>', ':Git status<CR>', { noremap = true, silent = true})
+map('n', '<leader>gp<Enter>', ':Git push<CR>', { noremap = true, silent = true})
+map('n', '<leader>g<Enter>', ':Git<CR>', { noremap = true, silent = true})
+
 -- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
